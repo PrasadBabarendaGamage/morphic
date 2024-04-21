@@ -128,11 +128,12 @@ def mesh_refine_along_xi1(mesh, basis=["L3", "L3", "L3"], fac=2):
             refined_xe.append(elem_node_ids)
 
     refined_xn_list = [list(point) for point in mapping.keys()]
-    refined_xn = np.array(refined_xn_list)
+    refined_xn = np.array(refined_xn_list) 
+    refined_xe = np.array(refined_xe)
 
-    refined_mesh = create_morphic_mesh(basis, refined_xn, np.array(refined_xe))
+    refined_mesh = create_morphic_mesh(basis, refined_xn, refined_xe)
 
-    return refined_mesh
+    return refined_mesh, refined_xn, refined_xe
 
 
 def mesh_refine_along_xi2(mesh, basis=["L3", "L3", "L3"], fac=2): 
@@ -181,11 +182,12 @@ def mesh_refine_along_xi2(mesh, basis=["L3", "L3", "L3"], fac=2):
             refined_xe.append(elem_node_ids)
 
     refined_xn_list = [list(point) for point in mapping.keys()]
-    refined_xn = np.array(refined_xn_list)
+    refined_xn = np.array(refined_xn_list) 
+    refined_xe = np.array(refined_xe) 
 
-    refined_mesh = create_morphic_mesh(basis, refined_xn, np.array(refined_xe))
+    refined_mesh = create_morphic_mesh(basis, refined_xn, refined_xe)
 
-    return refined_mesh
+    return refined_mesh, refined_xn, refined_xe
 
 def mesh_refine_along_xi3(mesh, basis=["L3", "L3", "L3"], fac=2):
     """
@@ -233,12 +235,14 @@ def mesh_refine_along_xi3(mesh, basis=["L3", "L3", "L3"], fac=2):
 
     # Generate the list of refined mesh nodes based on the mapping
     refined_xn_list = [list(point) for point in mapping.keys()]
-    refined_xn = np.array(refined_xn_list)
+    refined_xn = np.array(refined_xn_list) 
+    refined_xe = np.array(refined_xe)
 
-    # Update the refined mesh with the new nodes
-    refined_mesh = create_morphic_mesh(basis, refined_xn, np.array(refined_xe))
+    # Update the refined mesh with the new nodes 
+    refined_mesh = create_morphic_mesh(basis, refined_xn, refined_xe)
+    
 
-    return refined_mesh
+    return refined_mesh, refined_xn, refined_xe
 
 
 def full_refinement(mesh, basis=["L3", "L3", "L3"], facs=[2, 2, 2]):
@@ -309,9 +313,10 @@ def full_refinement(mesh, basis=["L3", "L3", "L3"], facs=[2, 2, 2]):
 
     # Generate the list of refined mesh nodes based on the mapping
     refined_xn_list = [list(point) for point in mapping.keys()]
-    refined_xn = np.array(refined_xn_list)
+    refined_xn = np.array(refined_xn_list) 
+    refined_xe = np.array(refined_xe)
 
     # Update the refined mesh with the new nodes
-    refined_mesh = create_morphic_mesh(basis, refined_xn, np.array(refined_xe))
+    refined_mesh = create_morphic_mesh(basis, refined_xn, refined_xe)
 
-    return refined_mesh
+    return refined_mesh, refined_xn, refined_xe

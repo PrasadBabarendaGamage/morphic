@@ -16,13 +16,13 @@ for element_id, element in enumerate(xe):
 mesh.generate(True) 
 
 # Refine the mesh along the xi1 direction. 
-refined_mesh_x1 = morphic.refinement.mesh_refine_along_xi1(mesh, basis=['L3', 'L3', 'L3'], fac=2) 
+refined_mesh_x1, refined_x1_xn, refined_x1_xe = morphic.refinement.mesh_refine_along_xi1(mesh, basis=['L3', 'L3', 'L3'], fac=2) 
 
 # Refine the mesh along the xi2 direction. 
-refined_mesh_x2 = morphic.refinement.mesh_refine_along_xi2(mesh, basis=['L3', 'L3', 'L3'], fac=2)
+refined_mesh_x2, refined_x2_xn, refined_x2_xe = morphic.refinement.mesh_refine_along_xi2(mesh, basis=['L3', 'L3', 'L3'], fac=2)
 
 # Refine the mesh along the xi3 direction. 
-refined_mesh_x3 = morphic.refinement.mesh_refine_along_xi3(mesh, basis=['L3', 'L3', 'L3'], fac=2) 
+refined_mesh_x3, refined_x3_xn, refined_x3_xe = morphic.refinement.mesh_refine_along_xi3(mesh, basis=['L3', 'L3', 'L3'], fac=2)
 
 # Refine along all direction at once. 
-refined_mesh = morphic.refinement.full_refinement(mesh, basis=['L3', 'L3', 'L3'], facs=[2, 2, 2])  
+refined_mesh_all, refined_all_xn, refined_all_xe = morphic.refinement.full_refinement(mesh, basis=['L3', 'L3', 'L3'], fac=2)
