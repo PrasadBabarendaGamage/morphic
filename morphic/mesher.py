@@ -1195,9 +1195,9 @@ class Mesh(object):
         h5f = tables.open_file(filepath, 'w')
         filters = tables.Filters(complevel=5, complib='zlib', shuffle=True)
         h5f.set_node_attr(h5f.root, 'version', self.version)
-        h5f.set_node_attr(h5f.root, 'created_at', self.created_at.encode())
-        h5f.set_node_attr(h5f.root, 'saved_at', datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC").encode())
-        h5f.set_node_attr(h5f.root, 'label', self.label.encode())
+        h5f.set_node_attr(h5f.root, 'created_at', self.created_at)
+        h5f.set_node_attr(h5f.root, 'saved_at', datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"))
+        h5f.set_node_attr(h5f.root, 'label', self.label)
         h5f.set_node_attr(h5f.root, 'units', self.units)
 
         metadata_node = h5f.create_group(h5f.root, 'metadata')
@@ -1778,7 +1778,10 @@ class Mesh(object):
         self.generate()
         if nodes != None:
             if not isinstance(nodes, list):
-                nodes = [nodes]
+                try:
+                    nodes = [*nodes]
+                except:
+                    nodes = [nodes]
             nodes = self.nodes[nodes]
         else:
             nodes = self.nodes(group)
@@ -1804,7 +1807,7 @@ class Mesh(object):
             else:
                 node.values[:, 0] = values[idx, :]
 
-    def get_node_ids(self, nodes=None, group=b'_default'):
+    def get_node_ids(self, nodes=None, group='_default'):
         self.generate()
         if nodes != None:
             if not isinstance(nodes, list):

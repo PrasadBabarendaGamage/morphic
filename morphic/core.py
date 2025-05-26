@@ -162,7 +162,7 @@ class ObjectList:
         self._id_counter = value
         
     def get_unique_id(self, random_chars=0):
-        existing_ids = self._object_ids.keys()
+        existing_ids = list(self._object_ids.keys())
         if random_chars > 0:
             random_id = existing_ids[0]
             while random_id in existing_ids:
